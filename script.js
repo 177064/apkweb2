@@ -16,18 +16,17 @@
 
   cw1.addEventListener("click", function() {
     answer.textContent = "Loading…"
-    fetch('https://jsonplaceholder.typicode.com/posts')
+    const ex1_num = ex1_text.value;
+    fetch(`https://jsonplaceholder.typicode.com/posts/${ex1_num}`)
       .then(response => response.json())
-      .then(array => {
-        console.log(array)
-        answer.innerHTML = array.map(post => `
+      .then(post => {
+        console.log(post);
+        answer.innerHTML = `
         <div>
-          <ul>
-          <li>${post.title}</li>
-          <li>${post.body}</li>
-        </ul>
+          <h3>${post.title}</h3>
+          <p>${post.body}</p>
         </div>
-      `);
+      `;
       })
   })
 
